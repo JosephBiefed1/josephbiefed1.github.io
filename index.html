@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <?!= include('JavaScript'); ?>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div>
+            <div class="row">
+                <div class="col-6">
+                    <form id="myForm" onsubmit="handleFormSubmit(this)">
+                        <div class="main">
+                            <h1>KTM Booking System</h1>
+                            </div>
+                        <h2 class="header">General Information</h2>
+                        <hr>
+                    <div class="container">
+                        <div class="form-group">
+                          <label for="numofpeople">Number of Pax:</label>
+                          <select name="pax" id="num_of_people">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+
+                                <p>Travel Details</p>
+                            <div class="form-check form-check-inline" id="1way">
+                                <div class="form-check form-check-inline">
+
+                                  <input class="form-check-input" type="radio" onclick="enableRadios10(), enableRadios15()" name="travel" id="S_to_M1" value="Singapore to Malaysia, 1 way">
+                                  <label class="form-check-label" for="S_to_M1">Singapore to Malaysia, 1 way</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" onclick="enableRadios9(), enableRadios15()" name="travel" id="M_to_S1" value="Malaysia to Singapore, 1 way">
+                                    <label class="form-check-label" for="M_to_S1">Malaysia to Singapore, 1 way</label>
+                                </div>
+                                <script>
+                                function enableRadios9() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios9 = document.querySelectorAll('input[name="opt1"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios9.length; i++) {
+                                    radios9[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <script>
+                                function enableRadios10() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios10 = document.querySelectorAll('input[name="opt8"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios10.length; i++) {
+                                    radios10[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                            </div>
+
+                            <div class="form-check form-check-inline" >
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" onclick="enableRadios9(), enableRadios10(), enableRadios15(),enableRadios16()" name="travel" id="S_to_M2" value="Singapore to Malaysia and back, 2 ways">
+                                    <label class="form-check-label" for="S_to_M2">Singapore to Malaysia, 2 ways</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" onclick="enableRadios10(), enableRadios9(), enableRadios15(), enableRadios16()" name="travel" id="M_to_S2" value="Malaysia to Singapore, 2 ways">
+                                    <label class="form-check-label" for="M_to_S2">Malaysia to Singapore, 2 ways</label>
+                                </div>
+                            </div>
+                            </div>
+
+
+                                <div class="form-group">
+                                    <label for="Origin">Trip start date:</label>
+                                    <input type="date" class="form-control" id="Origin" name="origin" >
+                                </div>
+                                <div class="form-group" hidden id="2way">
+                                    <label for="Destination">Trip end date:</label>
+                                    <input type="date" class="form-control" id="Destination" name="destination" >
+                                </div>
+                                 <script>
+                              // Get the select element and the form element
+                              const selectElementBack = document.getElementById('M_to_S2');
+                              const formElementBack = document.getElementById('2way');
+
+                              // Listen for the change event on the select element
+                              selectElementBack.addEventListener('change', (event) => {
+                                // Get the selected option value
+                                const selectedValueBack = event.target.value;
+
+                                // If the selected option value is 4, show the form
+                                if (selectedValueBack === 'Malaysia to Singapore, 2 ways' ) {
+                                  formElementBack.removeAttribute('hidden');
+                                } else {
+                                  formElementBack.setAttribute('hidden', true);
+                                }
+                              });
+                            </script>
+<script>
+                              // Get the select element and the form element
+                              const selectElementBack1 = document.getElementById('S_to_M2');
+                              const formElementBack1 = document.getElementById('2way');
+
+                              // Listen for the change event on the select element
+                              selectElementBack1.addEventListener('change', (event) => {
+                                // Get the selected option value
+                                const selectedValueBack1 = event.target.value;
+
+                                // If the selected option value is 4, show the form
+                                if (selectedValueBack1 === 'Singapore to Malaysia and back, 2 ways' ) {
+                                  formElementBack1.removeAttribute('hidden');
+                                } else {
+                                  formElementBack1.setAttribute('hidden', true);
+                                }
+                              });
+                            </script>
+                    </div>
+                              <div class="time-chosen">
+                                  <h2 class="align">CHOOSE YOUR TIMESLOTS</h2>
+                                  <div class="journey" >
+                                  <p>Malaysia to Singapore</p>
+                                  <p class="additional-details">(Select only if you are going <strong> to Singapore</strong> or returning<strong> to Singapore</strong>)</p>
+                                  </div>
+                                <div class="time-chosen time-chosen-details">
+                                  <label for="malaysia_choice">1)</label>
+                                  <input type="radio" class="time-chosen" name="opt1" id="malaysia_choice" onclick="enableRadios2()" value="500" disabled>
+                                  <label class="time-chosen">5.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt1" onclick="enableRadios2()" value="530" disabled>
+                                  <label class="time-chosen">5.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="600" disabled>
+                                  <label class="time-chosen">6.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt1" onclick="enableRadios2()" value="630" disabled>
+                                  <label class="time-chosen">6.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="700" disabled>
+                                  <label class="time-chosen">7.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt1" onclick="enableRadios2()" value="730" disabled>
+                                  <label class="time-chosen">7.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="845" disabled>
+                                  <label class="time-chosen">8.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1000" disabled>
+                                  <label class="time-chosen">10.00am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1130" disabled>
+                                  <label class="time-chosen">11.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1245" disabled>
+                                  <label class="time-chosen">12.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1400" disabled>
+                                  <label class="time-chosen">2.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1515" disabled>
+                                  <label class="time-chosen">3.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1630" disabled>
+                                  <label class="time-chosen">4.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1745" disabled>
+                                  <label class="time-chosen">5.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="1900" disabled>
+                                  <label class="time-chosen">7.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="2015" disabled>
+                                  <label class="time-chosen">8.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="2130" disabled>
+                                  <label class="time-chosen">9.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt1" onclick="enableRadios2()" value="2245" disabled>
+                                  <label class="time-chosen">10.45pm</label>
+                                </div>
+
+
+                                <script>
+                                function enableRadios2() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios2 = document.querySelectorAll('input[name="opt2"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios2.length; i++) {
+                                    radios2[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+
+                                <div class="time-chosen time-chosen-details">
+                                  <label>2)</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="500" disabled>
+                                  <label class="time-chosen">5.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt2" onclick="enableRadios3()" value="530" disabled>
+                                  <label class="time-chosen">5.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="600" disabled>
+                                  <label class="time-chosen">6.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt2" onclick="enableRadios3()" value="630" disabled>
+                                  <label class="time-chosen">6.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="700">
+                                  <label class="time-chosen">7.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt2" onclick="enableRadios3()" value="730" disabled>
+                                  <label class="time-chosen">7.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="845">
+                                  <label class="time-chosen">8.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1000" disabled>
+                                  <label class="time-chosen">10.00am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1130" disabled>
+                                  <label class="time-chosen">11.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1245" disabled>
+                                  <label class="time-chosen">12.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1400" disabled>
+                                  <label class="time-chosen">2.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1515" disabled>
+                                  <label class="time-chosen">3.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1630" disabled>
+                                  <label class="time-chosen">4.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1745" disabled>
+                                  <label class="time-chosen">5.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="1900" disabled>
+                                  <label class="time-chosen">7.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="2015" disabled>
+                                  <label class="time-chosen">8.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="2130" disabled>
+                                  <label class="time-chosen">9.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt2" onclick="enableRadios3()" value="2245" disabled>
+                                  <label class="time-chosen">10.45pm</label>
+
+                                </div>
+
+                                <script>
+                                function enableRadios3() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios3 = document.querySelectorAll('input[name="opt3"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios3.length; i++) {
+                                    radios3[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <div class="time-chosen time-chosen-details">
+                                  <label>3)</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="500" disabled>
+                                  <label class="time-chosen">5.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt3" onclick="enableRadios4()" value="530" disabled>
+                                  <label class="time-chosen">5.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="600" disabled>
+                                  <label class="time-chosen">6.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt3" onclick="enableRadios4()" value="630" disabled>
+                                  <label class="time-chosen">6.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="700">
+                                  <label class="time-chosen">7.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt3" onclick="enableRadios4()" value="730" disabled>
+                                  <label class="time-chosen">7.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="845">
+                                  <label class="time-chosen">8.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1000" disabled>
+                                  <label class="time-chosen">10.00am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1130" disabled>
+                                  <label class="time-chosen">11.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1245" disabled>
+                                  <label class="time-chosen">12.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1400" disabled>
+                                  <label class="time-chosen">2.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1515" disabled>
+                                  <label class="time-chosen">3.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1630" disabled>
+                                  <label class="time-chosen">4.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1745" disabled>
+                                  <label class="time-chosen">5.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="1900" disabled>
+                                  <label class="time-chosen">7.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="2015" disabled>
+                                  <label class="time-chosen">8.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="2130" disabled>
+                                  <label class="time-chosen">9.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt3" onclick="enableRadios4()" value="2245" disabled>
+                                  <label class="time-chosen">10.45pm</label>
+
+                                </div>
+                                <script>
+                                function enableRadios4() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios4 = document.querySelectorAll('input[name="opt4"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios4.length; i++) {
+                                    radios4[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+
+                                <div class="time-chosen time-chosen-details">
+                                  <label>4)</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="500" disabled>
+                                  <label class="time-chosen">5.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt4" onclick="enableRadios5()" value="530" disabled>
+                                  <label class="time-chosen">5.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="600" disabled>
+                                  <label class="time-chosen">6.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt4" onclick="enableRadios5()" value="630" disabled>
+                                  <label class="time-chosen">6.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="700">
+                                  <label class="time-chosen">7.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt4" onclick="enableRadios5()" value="730" disabled>
+                                  <label class="time-chosen">7.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="845">
+                                  <label class="time-chosen">8.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1000" disabled>
+                                  <label class="time-chosen">10.00am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1130" disabled>
+                                  <label class="time-chosen">11.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1245" disabled>
+                                  <label class="time-chosen">12.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1400" disabled>
+                                  <label class="time-chosen">2.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1515" disabled>
+                                  <label class="time-chosen">3.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1630" disabled>
+                                  <label class="time-chosen">4.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1745" disabled>
+                                  <label class="time-chosen">5.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="1900" disabled>
+                                  <label class="time-chosen">7.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="2015" disabled>
+                                  <label class="time-chosen">8.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="2130" disabled>
+                                  <label class="time-chosen">9.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt4" onclick="enableRadios5()" value="2245" disabled>
+                                  <label class="time-chosen">10.45pm</label>
+
+                                </div>
+                                <script>
+                                function enableRadios5() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios5 = document.querySelectorAll('input[name="opt5"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios5.length; i++) {
+                                    radios5[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <div class="time-chosen time-chosen-details">
+                                  <label>5)</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="500" disabled>
+                                  <label class="time-chosen">5.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt5" value="530" disabled>
+                                  <label class="time-chosen">5.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="600" disabled>
+                                  <label class="time-chosen">6.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt5" value="630" disabled>
+                                  <label class="time-chosen">6.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="700">
+                                  <label class="time-chosen">7.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt5" value="730" disabled>
+                                  <label class="time-chosen">7.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="845">
+                                  <label class="time-chosen">8.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1000" disabled>
+                                  <label class="time-chosen">10.00am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1130" disabled>
+                                  <label class="time-chosen">11.30am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1245" disabled>
+                                  <label class="time-chosen">12.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1400" disabled>
+                                  <label class="time-chosen">2.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1515" disabled>
+                                  <label class="time-chosen">3.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1630" disabled>
+                                  <label class="time-chosen">4.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1745" disabled>
+                                  <label class="time-chosen">5.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="1900" disabled>
+                                  <label class="time-chosen">7.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="2015" disabled>
+                                  <label class="time-chosen">8.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="2130" disabled>
+                                  <label class="time-chosen">9.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt5" value="2245" disabled>
+                                  <label class="time-chosen">10.45pm</label>
+
+                                </div>
+
+                                  <div class="journey" >
+                                  <p>Singapore to Malaysia</p>
+                                  <p class="additional-details">(Select only if you are going <strong> to Malaysia</strong> or returning<strong> to Malaysia</strong>)</p>
+                                  </div>
+                                <div class="time-chosen time-chosen-details">
+                                  <label for="Singapore_choice">1)</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  id="Singapore_choice" onclick="enableRadios11()" value="830" disabled>
+                                  <label class="time-chosen">8.30am</label>
+                                  <input type="radio" class="time-chosen"  name="opt8"  onclick="enableRadios11()" value="945" disabled>
+                                  <label class="time-chosen">9.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="1100" disabled>
+                                  <label class="time-chosen">11.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt8"  onclick="enableRadios11()" value="1230" disabled>
+                                  <label class="time-chosen">12.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="1345" disabled>
+                                  <label class="time-chosen">1.45pm</label>
+                                  <input type="radio" class="time-chosen"  name="opt8"  onclick="enableRadios11()" value="1500" disabled>
+                                  <label class="time-chosen">3.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="1615" disabled>
+                                  <label class="time-chosen">4.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="1730" disabled>
+                                  <label class="time-chosen">5.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="1845" disabled>
+                                  <label class="time-chosen">6.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="2000" disabled>
+                                  <label class="time-chosen">8.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="2115" disabled>
+                                  <label class="time-chosen">9.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="2230" disabled>
+                                  <label class="time-chosen">10.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt8"  onclick="enableRadios11()" value="2345" disabled>
+                                  <label class="time-chosen">11.45pm</label>
+
+
+                                </div>
+
+
+                                <script>
+                                function enableRadios11() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios11 = document.querySelectorAll('input[name="opt9"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios11.length; i++) {
+                                    radios11[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+
+                                <div class="time-chosen time-chosen-details">
+                                  <label>2)</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="830" disabled>
+                                  <label class="time-chosen">8.30am</label>
+                                  <input type="radio" class="time-chosen"  name="opt9" onclick="enableRadios12()" value="945" disabled>
+                                  <label class="time-chosen">9.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="1100" disabled>
+                                  <label class="time-chosen">11.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt9" onclick="enableRadios12()" value="1230" disabled>
+                                  <label class="time-chosen">12.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="1345" disabled>
+                                  <label class="time-chosen">1.45pm</label>
+                                  <input type="radio" class="time-chosen"  name="opt9" onclick="enableRadios12()" value="1500" disabled>
+                                  <label class="time-chosen">3.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="1615" disabled>
+                                  <label class="time-chosen">4.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="1730" disabled>
+                                  <label class="time-chosen">5.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="1845" disabled>
+                                  <label class="time-chosen">6.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="2000" disabled>
+                                  <label class="time-chosen">8.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="2115" disabled>
+                                  <label class="time-chosen">9.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="2230" disabled>
+                                  <label class="time-chosen">10.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt9" onclick="enableRadios12()" value="2345" disabled>
+                                  <label class="time-chosen">11.45pm</label>
+
+
+                                </div>
+                                <script>
+                                function enableRadios12() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios12 = document.querySelectorAll('input[name="opt10"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios12.length; i++) {
+                                    radios12[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <div class="time-chosen time-chosen-details">
+                                  <label>3)</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="830" disabled>
+                                  <label class="time-chosen">8.30am</label>
+                                  <input type="radio" class="time-chosen"  name="opt10" onclick="enableRadios13()" value="945" disabled>
+                                  <label class="time-chosen">9.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="1100" disabled>
+                                  <label class="time-chosen">11.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt10" onclick="enableRadios13()" value="1230" disabled>
+                                  <label class="time-chosen">12.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="1345" disabled>
+                                  <label class="time-chosen">1.45pm</label>
+                                  <input type="radio" class="time-chosen"  name="opt10" onclick="enableRadios13()" value="1500" disabled>
+                                  <label class="time-chosen">3.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="1615" disabled>
+                                  <label class="time-chosen">4.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="1730" disabled>
+                                  <label class="time-chosen">5.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="1845" disabled>
+                                  <label class="time-chosen">6.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="2000" disabled>
+                                  <label class="time-chosen">8.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="2115" disabled>
+                                  <label class="time-chosen">9.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="2230" disabled>
+                                  <label class="time-chosen">10.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt10" onclick="enableRadios13()" value="2345" disabled>
+                                  <label class="time-chosen">11.45pm</label>
+
+
+                                </div>
+                                <script>
+                                function enableRadios13() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios13 = document.querySelectorAll('input[name="opt11"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios13.length; i++) {
+                                    radios13[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <div class="time-chosen time-chosen-details">
+                                  <label>4)</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="830" disabled>
+                                  <label class="time-chosen">8.30am</label>
+                                  <input type="radio" class="time-chosen"  name="opt11" onclick="enableRadios14()" value="945" disabled>
+                                  <label class="time-chosen">9.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="1100" disabled>
+                                  <label class="time-chosen">11.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt11" onclick="enableRadios14()" value="1230" disabled>
+                                  <label class="time-chosen">12.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="1345" disabled>
+                                  <label class="time-chosen">1.45pm</label>
+                                  <input type="radio" class="time-chosen"  name="opt11" onclick="enableRadios14()" value="1500" disabled>
+                                  <label class="time-chosen">3.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="1615" disabled>
+                                  <label class="time-chosen">4.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="1730" disabled>
+                                  <label class="time-chosen">5.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="1845" disabled>
+                                  <label class="time-chosen">6.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="2000" disabled>
+                                  <label class="time-chosen">8.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="2115" disabled>
+                                  <label class="time-chosen">9.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="2230" disabled>
+                                  <label class="time-chosen">10.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt11" onclick="enableRadios14()" value="2345" disabled>
+                                  <label class="time-chosen">11.45pm</label>
+
+
+                                </div>
+                                <script>
+                                function enableRadios14() {
+                                  // Get all radio buttons with the "myRadio" name
+                                  var radios13 = document.querySelectorAll('input[name="opt12"]');
+
+                                  // Loop over the radio buttons and remove the "disabled" attribute
+                                  for (var i = 0; i < radios14.length; i++) {
+                                    radios14[i].removeAttribute("disabled");
+                                  }
+                                }
+                                </script>
+                                <div class="time-chosen time-chosen-details">
+                                  <label>5)</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="830" disabled>
+                                  <label class="time-chosen">8.30am</label>
+                                  <input type="radio" class="time-chosen"  name="opt12" value="945" disabled>
+                                  <label class="time-chosen">9.45am</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="1100" disabled>
+                                  <label class="time-chosen">11.00am</label>
+                                  <input type="radio" class="time-chosen"  name="opt12" value="1230" disabled>
+                                  <label class="time-chosen">12.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="1345" disabled>
+                                  <label class="time-chosen">1.45pm</label>
+                                  <input type="radio" class="time-chosen"  name="opt12" value="1500" disabled>
+                                  <label class="time-chosen">3.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="1615" disabled>
+                                  <label class="time-chosen">4.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="1730" disabled>
+                                  <label class="time-chosen">5.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="1845" disabled>
+                                  <label class="time-chosen">6.45pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="2000" disabled>
+                                  <label class="time-chosen">8.00pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="2115" disabled>
+                                  <label class="time-chosen">9.15pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="2230" disabled>
+                                  <label class="time-chosen">10.30pm</label>
+                                  <input type="radio" class="time-chosen" name="opt12" value="2345" disabled>
+                                  <label class="time-chosen">11.45pm</label>
+                          </div>
+                              </div>
+
+                        <div>
+                            <h2 class="header">Personal Particulars</h2>
+                            <hr>
+                            <div class="main-portion container">
+                            <div class="form-group"  id="1contact" >
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName" placeholder="Passport Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="pNumber">Passport Number </label>
+                                <input type="text" class="form-control" id="pNumber" name="passportNumber" placeholder="Passport Number">
+
+                            </div>
+
+                            <div class="form-group-gender">
+                            <p>Gender</p>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                            </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date">
+                                </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber" placeholder="Contact No:">
+                            </div>
+
+                            </div>
+                            <div class="main-portion container">
+
+                            <div class="form-row"  id="2contact" hidden>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName2" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber2" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender2" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender2" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber2" placeholder="Contact No:">
+                            </div>
+
+                            </div>
+                            </div>
+                                    <script>
+                                  // Get the select element and the form element
+                                  const selectElement2 = document.getElementById('num_of_people');
+                                  const formElement2 = document.getElementById('2contact');
+
+                                  // Listen for the change event on the select element
+                                  selectElement2.addEventListener('change', (event) => {
+                                    // Get the selected option value
+                                    const selectedValue2 = event.target.value;
+
+                                    // If the selected option value is 2, show the form
+                                    if (selectedValue2 === '2') {
+                                      formElement2.removeAttribute('hidden');
+                                    } else {
+                                      formElement2.setAttribute('hidden', true);
+                                    }
+                                  });
+                                </script>
+                        <div class="main-portion container">
+                          <div class="form-row"  id="3contact" hidden>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName3" placeholder="Passport Name">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber3" placeholder="Passport Number">
+                                </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender3" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender3" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber3" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName4" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber4" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender4" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender4" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber4" placeholder="Contact No:">
+                            </div>
+
+
+                                  </div>
+
+
+
+                                    <script>
+                                  // Get the select element and the form element
+                                  const selectElement3 = document.getElementById('num_of_people');
+                                  const formElement3 = document.getElementById('3contact');
+
+                                  // Listen for the change event on the select element
+                                  selectElement3.addEventListener('change', (event) => {
+                                    // Get the selected option value
+                                    const selectedValue3 = event.target.value;
+
+                                    // If the selected option value is 3, show the form
+                                    if (selectedValue3 === '3') {
+
+                                      formElement3.removeAttribute('hidden');
+                                    } else {
+                                      formElement3.setAttribute('hidden', true);
+                                    }
+                                  });
+                                </script>
+                        </div>
+
+                        <div class="main-portion container">
+                            <div class="form-row"  id="4contact" hidden>
+
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName5" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber5" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender5" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender5" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date5">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber5" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName6" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber6" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender6" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender6" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date6">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber6" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName7" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber7" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender7" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender7" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date7">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber7" placeholder="Contact No:">
+                            </div>
+
+                                  </div>
+
+
+                                    <script>
+                                  // Get the select element and the form element
+                                  const selectElement4 = document.getElementById('num_of_people');
+                                  const formElement4 = document.getElementById('4contact');
+
+                                  // Listen for the change event on the select element
+                                  selectElement4.addEventListener('change', (event) => {
+                                    // Get the selected option value
+                                    const selectedValue4 = event.target.value;
+
+                                    // If the selected option value is 4, show the form
+                                    if (selectedValue4 === '4' ) {
+                                      formElement4.removeAttribute('hidden');
+                                    } else {
+                                      formElement4.setAttribute('hidden', true);
+                                    }
+                                  });
+                                </script>
+                        </div>
+                        <div class="main-portion container">
+                                <div class="form-row"  id="5contact" hidden>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName8" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber8" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender8" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender8" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date8">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber8" placeholder="Contact No:">
+                            </div>
+    <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName9" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber9" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender9" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender9" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date9">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber9" placeholder="Contact No:">
+                            </div>
+    <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName10" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber10" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender10" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender10" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber10" placeholder="Contact No:">
+                            </div>
+    <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName11" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber11" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender11" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender11" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date11">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number5" name="contactNumber11" placeholder="Contact No:">
+                            </div>
+
+                                </div>
+
+                                    <script>
+                                  // Get the select element and the form element
+                                  const selectElement5 = document.getElementById('num_of_people');
+                                  const formElement5 = document.getElementById('5contact');
+
+                                  // Listen for the change event on the select element
+                                  selectElement5.addEventListener('change', (event) => {
+                                    // Get the selected option value
+                                    const selectedValue5 = event.target.value;
+
+                                    // If the selected option value is 5, show the form
+                                    if (selectedValue5 === '5') {
+                                      formElement5.removeAttribute('hidden');
+                                    } else {
+                                      formElement5.setAttribute('hidden', true);
+                                    }
+                                  });
+                                </script>
+                        </div>
+                        <div class="main-portion container">
+                                <div class="form-row"  id="6contact" hidden>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName12" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber12" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender12" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender12" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber12" placeholder="Contact No:">
+                            </div>
+    <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName13" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber13" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender13" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender13" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date13">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber13" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName14" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber14" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender14" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender14" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date14">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber14" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName15" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber15" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender15" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender15" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date15">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber15" placeholder="Contact No:">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label for="passport_name">Passport Name</label>
+                                    <input type="text" class="form-control" id="pName" name="passportName16" placeholder="Passport Name">
+                                </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="passport_number">Passport Number</label>
+                                    <input type="text" class="form-control" id="pNumber" name="passportNumber16" placeholder="Passport Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p>Gender</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender16" id="male" value="Male">
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender16" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="passport_expiry date">Passport Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date16">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact_number" name="contactNumber16" placeholder="Contact No:">
+                            </div>
+
+                                </div>
+
+                                    <script>
+                                  // Get the select element and the form element
+                                  const selectElement6 = document.getElementById('num_of_people');
+                                  const formElement6 = document.getElementById('6contact');
+
+                                  // Listen for the change event on the select element
+                                  selectElement6.addEventListener('change', (event) => {
+                                    // Get the selected option value
+                                    const selectedValue6 = event.target.value;
+
+                                    // If the selected option value is 6, show the form
+                                    if (selectedValue6 === '6') {
+                                      formElement6.removeAttribute('hidden');
+                                    } else {
+                                      formElement6.setAttribute('hidden', true);
+                                    }
+                                  });
+                                </script>
+                        </div>
+                             <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+
+
+
+
+                        </div>
+                    </form>
+                </div>
+                        <div id="output"></div>
+                    </div>
+                </div>
+      </body>
+
+    </html>
